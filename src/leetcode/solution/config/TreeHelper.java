@@ -19,6 +19,39 @@ public class TreeHelper {
 
     }
 
+    //创建二叉搜索树
+    public TreeNode bulidBST() {
+        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+        for (int i = 1; i < values.length; i++) {
+            createBST(root, Integer.parseInt(values[i]));
+        }
+        return root;
+    }
+
+    public void createBST(TreeNode node, int val) {
+        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+        for (int i = 1; i < values.length; i++) {
+            if (values[i] == null){
+
+            }
+            createBST(root, Integer.parseInt(values[i]));
+        }
+        if (val < node.val) {
+            if (node.left == null) {
+                node.left = new TreeNode(val);
+            } else {
+                createBST(node.left, val);
+            }
+        } else {
+            if (node.right == null) {
+                node.right = new TreeNode(val);
+            } else {
+                createBST(node.right, val);
+            }
+        }
+    }
+
+
     // 递归建立二叉树
     public TreeNode createTree() {
         TreeNode node = null;
