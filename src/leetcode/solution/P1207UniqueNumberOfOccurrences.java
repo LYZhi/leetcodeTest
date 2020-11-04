@@ -33,7 +33,7 @@
 // Related Topics 哈希表 
 // 👍 92 👎 0
 
-package solution;
+package leetcode.solution;
 
 import java.util.Arrays;
 import java.util.HashSet;
