@@ -1,5 +1,8 @@
 package leetcode.solution.config;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @author LYZhi
  * @date 2020/9/23 19:10
@@ -8,6 +11,7 @@ public class TreeHelper {
 
     static int index;
     static String[] values;
+    static int[] tree;
 
     public TreeHelper() {
     }
@@ -16,39 +20,32 @@ public class TreeHelper {
     public void setValues(String treeValues) {
         values = treeValues.split(",");
         index = 0;
+        tree = new int[values.length];
+        for (int i = 0;i<values.length;i++){
+            tree[i] = Integer.parseInt(values[i]);
+        }
 
     }
 
     //创建二叉搜索树
     public TreeNode bulidBST() {
-        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
-        for (int i = 1; i < values.length; i++) {
-            createBST(root, Integer.parseInt(values[i]));
-        }
-        return root;
-    }
-
-    public void createBST(TreeNode node, int val) {
-        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
-        for (int i = 1; i < values.length; i++) {
-            if (values[i] == null){
-
+        TreeNode p = new TreeNode(tree[0]);
+        TreeNode q = p;
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        int i = 0;
+        while (p != null) {
+            if (2 * i + 1 < tree.length) {
+                p.left = new TreeNode(tree[2 * i + 1]);
+                queue.add(p.left);
             }
-            createBST(root, Integer.parseInt(values[i]));
-        }
-        if (val < node.val) {
-            if (node.left == null) {
-                node.left = new TreeNode(val);
-            } else {
-                createBST(node.left, val);
+            if (2 * i + 2 < tree.length) {
+                p.right = new TreeNode(tree[2 * i + 2]);
+                queue.add(p.right);
             }
-        } else {
-            if (node.right == null) {
-                node.right = new TreeNode(val);
-            } else {
-                createBST(node.right, val);
-            }
+            p = queue.poll();
+            i += 1;
         }
+        return q;
     }
 
 
