@@ -48,7 +48,7 @@ public class POffer_27_ErChaShuDeJingXiangLcof {
         String s = "4,2,7,1,3,6,9";
         TreeHelper treeHelper = new TreeHelper();
         treeHelper.setValues(s);
-        TreeNode treeNode =treeHelper.createTree();
+        TreeNode treeNode =treeHelper.bulidBST();
         treeHelper.preOrder(solution.mirrorTree(treeNode));
 
 
